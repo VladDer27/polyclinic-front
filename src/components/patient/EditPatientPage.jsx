@@ -20,6 +20,7 @@ function EditPatientForm() {
     const navigate = useNavigate(); 
 
     useEffect(() => {
+        document.title = "Изменить профиль";
         const fetchPatientData = async (patientId) => {
             try {
                 const response = await axios.get(`/patient/edit/${patientId}`);

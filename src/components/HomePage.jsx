@@ -4,19 +4,44 @@ import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { Link } from 'react-router-dom';
+import axios from '../api/axiosConfig';
 
 function HomePage() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userRole, setUserRole] = useState('');
+    const [id, setId] = useState(null);
+  
     useEffect(() => {
       // Проверяем наличие токена при монтировании компонента
       const token = localStorage.getItem('auth_token');
       if (token) {
         const decoded = jwtDecode(token);
         setIsLoggedIn(true);
+        setId()
         setUserRole(decoded.a[0]);
+        getIdByRole(decoded.exp, decoded.a[0], token);
       }
   }, []); 
+
+  const getIdByRole = async (userLogin, userRole, token) => {
+    try {
+        if (userRole === 'ROLE_GUEST') {
+            console.log(userLogin, userRole);
+            setId(jwtDecode(token).sub);
+        } else if (userRole === 'ROLE_PATIENT') {
+          const response = await axios.get(`/patient?email=${userLogin}`);
+          setId(response.data.id);
+          console.log('ID пользователя:', response.data.id);  
+        } else {
+            console.error('Недопустимая роль пользователя');
+            return;
+        }
+
+        
+    } catch (error) {
+        console.error('Ошибка при получении ID пользователя:', error);
+    }
+};
 
     return (
       <>
@@ -41,12 +66,15 @@ function HomePage() {
                 <p>Мы надеемся, что наша поликлиника станет вашим надежным партнером в поддержании здоровья. Желаем вам здоровья и благополучия!</p>
                 <p>С уважением, Константин Игоревич Петров</p>
                 {isLoggedIn ? (
-                <Link to="/appointments" className="btn btn-primary mb-1">Записаться на прием</Link>
+                    userRole === 'ROLE_GUEST' ? 
+                        <Link to={`/guest/edit/${id}`} className="btn btn-primary mb-1">Записаться на прием</Link> :
+                    userRole === 'ROLE_PATIENT' ? 
+                        <Link to="/appointments" className="btn btn-primary mb-1">Записаться на прием</Link> :
+                    null // Для случая, когда роль пользователя - доктор
                 ) : (
-                // Код, который будет выполнен, если пользователь не вошел в систему
-                <Link to="/login" className="btn btn-primary mb-1">Записаться на прием</Link>
+                    <Link to="/login" className="btn btn-primary mb-1">Записаться на прием</Link>
                 )}
-                
+
               </div>
             </div>
           </div>
