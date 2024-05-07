@@ -69,7 +69,7 @@ function HomePage() {
                     userRole === 'ROLE_GUEST' ? 
                         <Link to={`/guest/edit/${id}`} className="btn btn-primary mb-1">Записаться на прием</Link> :
                     userRole === 'ROLE_PATIENT' ? 
-                        <Link to="/appointments" className="btn btn-primary mb-1">Записаться на прием</Link> :
+                        <Link to={"/appointment/schedule/0"} className="btn btn-primary mb-1">Записаться на прием</Link> :
                     null // Для случая, когда роль пользователя - доктор
                 ) : (
                     <Link to="/login" className="btn btn-primary mb-1">Записаться на прием</Link>

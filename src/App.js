@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom'; // Импортируем Routes и Route
+import { Routes, Route} from 'react-router-dom'; // Импортируем Routes и Route
 import HomePage from './components/HomePage';
 import RegistrationPage from './components/RegistrationPage';
 import NotFound from './components/NotFound';
@@ -9,6 +9,8 @@ import Appointments from './components/patient/Appointments';
 import GuestToPatient from './components/guest/GuestToPatient';
 import DoctorAppointments from './components/doctor/DoctorAppointments';
 import { AuthProvider } from './context/AuthContext';
+import SchedulePage from './components/Schedule/SchedulePage';
+import DoctorAppointmentsPage from './components/Schedule/DoctorAppointmentsPage';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/patient/appointments/:patientId" element={<Appointments />} />
         <Route path="/doctor/appointments/:doctorId" element={<DoctorAppointments />} />
         <Route path="/guest/edit/:guestId" element={<GuestToPatient />} />
+        <Route path="/appointment/schedule/:week" element={<SchedulePage />} />
+        <Route path="/appointment/schedule/:doctorId/:date" element={<DoctorAppointmentsPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthProvider>
