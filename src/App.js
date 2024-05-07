@@ -7,6 +7,7 @@ import LoginPage from './components/LoginPage';
 import EditPatientPage from './components/patient/EditPatientPage';
 import Appointments from './components/patient/Appointments';
 import GuestToPatient from './components/guest/GuestToPatient';
+import DoctorAppointments from './components/doctor/DoctorAppointments';
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} /> 
         <Route path="/patient/edit/:patientId" element={<EditPatientPage />} />
         <Route path="/patient/appointments/:patientId" element={<Appointments />} />
+        <Route path="/doctor/appointments/:doctorId" element={<DoctorAppointments />} />
         <Route path="/guest/edit/:guestId" element={<GuestToPatient />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
