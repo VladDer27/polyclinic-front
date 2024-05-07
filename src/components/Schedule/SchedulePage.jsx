@@ -164,7 +164,7 @@ function SchedulePage() {
                         </table>
                     </div>
                     <div className="col-12 text-center mb-4">
-                        <button onClick={goToPreviousWeek} className="col-2 btn btn-primary" disabled={week === '0'}>Предыдущая неделя</button>
+                        <button style={{marginRight: '10px'}} onClick={goToPreviousWeek} className="col-2 btn btn-primary" disabled={week === '0'}>Предыдущая неделя</button>
                         <button onClick={goToNextWeek} className="col-2 btn btn-primary">Следующая неделя</button>
                     </div>
                 </div>

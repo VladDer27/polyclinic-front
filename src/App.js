@@ -15,6 +15,7 @@ import AdminPanel from './components/admin/AdminPanel';
 import EditPatient from './components/admin/EditPatient';
 import EditGuest from './components/admin/EditGuest';
 import EditDoctor from './components/admin/EditDoctor';
+import CreateDoctor from './components/admin/CreateDoctor';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/admin/patient/edit/:patientId" element={<EditPatient />} />
         <Route path="/admin/guest/edit/:guestId" element={<EditGuest />} />
         <Route path="/admin/doctor/edit/:doctorId" element={<EditDoctor />} />
+        <Route path="/admin/doctor/new" element={<CreateDoctor />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthProvider>
