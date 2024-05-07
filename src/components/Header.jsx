@@ -76,7 +76,7 @@ function Header() {
                 <>
                 {userRole === 'ROLE_ADMIN' && 
                     <li className="nav-item">
-                    <a className="nav-link" href="/admin">Панель администратора</a>
+                    <Link className="nav-link" to={"/admin"}>Панель администратора</Link>
                 </li>}
                 {userRole === 'ROLE_PATIENT' && 
                 <>

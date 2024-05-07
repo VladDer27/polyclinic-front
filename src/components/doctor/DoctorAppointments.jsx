@@ -10,7 +10,7 @@ function AppointmentsPage() {
     const { doctorId } = useParams();
 
     useEffect(() => {
-        document.title = "Запланированные приемы    ";
+        document.title = "Запланированные приемы";
         const fetchAppointments = async () => {
             try {
                 const response = await axios.get(`/doctor/appointments/${doctorId}`);
